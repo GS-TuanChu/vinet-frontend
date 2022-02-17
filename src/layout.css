@@ -1,0 +1,21 @@
+.block {
+  margin-bottom: 10px;
+}
+h1 {
+  text-align: center;
+}
+main {
+  text-align: center;
+}
+#txt_search {
+  width: 350px;
+}
+
+#btn_search {
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+#btn_login_mm{
+  cursor: pointer;
+}
