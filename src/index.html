@@ -7,72 +7,154 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="../node_modules/web3/dist/web3.min.js"></script>
   <script defer src="app.js"></script>
+  <script defer src="transaction.js"></script>
+  <script defer src="utils/variables.js"></script>
+  <script defer src="utils/getBalance.js"></script>
   <link rel="stylesheet" href="layout.css">
   <title>ViNet</title>
 </head>
 
 <body onload="onLoad()">
   <header>
+    <h1>ViNet</h1>
     <nav>
       <div id="loginMM">
         <button id="btn_login_mm" onclick="loginHandler()">Login Metamask</button>
       </div>
     </nav>
   </header>
-  <h1>ViNet</h1>
-  <main>
-    <div class="block account-info">
-      <div>
-        <span>Your ETH:</span>
-        <span class="balance balance-eth">0</span>
-      </div>
-      <div>
-        <span>Your USUD:</span>
-        <span class="balance">0</span>
-      </div>
-      <div>
-        <span>Your VSUD:</span>
-        <span class="balance">0</span>
-      </div>
-    </div>
-    <div class="block">
-      <div id="installMM">
-        <h3>Please install Metamask!</h3>
-      </div>
-    </div>
 
-    <div class="block">
-      <div>
-        <label>Metamask Address:</label>
-        <input type="text" id="txt_search" placeholder="Enter a Metamask address">
-      </div>
-      <button id="btn_search" onclick="searchAccount()">Search</button>
+  <main id="installMM">
+    <div>
+      <h3>Please install Metamask!</h3>
     </div>
+  </main>
 
-    <div class="block other-account-info">
-      <div>
-        <span>Account's ETH:</span>
-        <span class="balance other-balance-eth">0</span>
+  <main id="main">
+    <section>
+      <button id="btn_status" onclick="changeStatusHandler()">Change Status</button>
+      <div class="block mint">
+        <div>
+          <label>USDC:</label>
+          <input type="text" id="usdc-amount" placeholder="Enter an amount you want to mint">
+        </div>
+        <button id="btn_search" onclick="mintUSDCHandler()">Mint USDC</button>
       </div>
-      <div>
-        <span>Account's USUD:</span>
-        <span class="balance">0</span>
-      </div>
-      <div>
-        <span>Account's VSUD:</span>
-        <span class="balance">0</span>
-      </div>
-    </div>
+    </section>
 
-    <div id="exchange">
-      <h2>Exchange</h2>
-      <input type="text" name="" id="vusd-amount" placeholder="Enter VUSD amount">
-      <select id="exchange-options" onchange="selectHandler()">
-        <option value="buy">Buy VUSD</option>
-        <option value="sell">Sell VUSD</option>
-      </select>
-      <button id="btn_submit" onclick="submit()">Submit</button>
-    </div>
+    <section id="main-section">
+      <div id="usdc-vusd">
+        <h2>USDC and VUSD</h2>
+        <div id="account">
+          <div class="block account-info">
+            <div>
+              <span>Your ETH:</span>
+              <span class="balance balance-eth">0</span>
+            </div>
+            <div>
+              <span>Your USDC:</span>
+              <span class="balance balance-usdc">0</span>
+            </div>
+            <div>
+              <span>Your VUSD:</span>
+              <span class="balance balance-vusd">0</span>
+            </div>
+          </div>
+
+          <div class="block">
+            <div>
+              <label>Metamask Address:</label>
+              <input type="text" id="txt_search_usdc" placeholder="Enter a Metamask address">
+            </div>
+            <button id="btn_search_usdc" onclick="searchAccount('usdc')">Search</button>
+          </div>
+
+          <div class="block other-account-info">
+            <div>
+              <span>Account's ETH:</span>
+              <span class="balance other-balance-eth">0</span>
+            </div>
+            <div>
+              <span>Account's USDC:</span>
+              <span class="balance other-balance-usdc">0</span>
+            </div>
+            <div>
+              <span>Account's VUSD:</span>
+              <span class="balance other-balance-vusd">0</span>
+            </div>
+          </div>
+
+          <div id="exchange">
+            <input type="text" name="" id="vusd-amount" placeholder="How much VUSD do you want to buy?">
+            <select id="exchange-options" onchange="selectHandler()">
+              <option value="buy">Buy VUSD</option>
+              <option value="sell">Sell VUSD</option>
+            </select>
+            <button id="btn_submit" onclick="submit('usdc')">Submit</button>
+          </div>
+
+        </div>
+      </div>
+
+      <div id="van-vusd">
+        <h2>VNT and VUSD</h2>
+
+        <div class="block account-info">
+          <div>
+            <span>Your ETH:</span>
+            <span class="balance balance-eth">0</span>
+          </div>
+          <div>
+            <span>Your USDC:</span>
+            <span class="balance balance-usdc">0</span>
+          </div>
+          <div>
+            <span>Your VUSD:</span>
+            <span class="balance balance-vusd">0</span>
+          </div>
+          <div>
+            <span>Your VAN:</span>
+            <span class="balance balance-van">0</span>
+          </div>
+        </div>
+
+        <div class="block">
+          <div>
+            <label>Metamask Address:</label>
+            <input type="text" id="txt_search_van" placeholder="Enter a Metamask address">
+          </div>
+          <button id="btn_search_van" onclick="searchAccount('van')">Search</button>
+        </div>
+
+        <div class="block other-account-info">
+          <div>
+            <span>Account's ETH:</span>
+            <span class="balance other-balance-eth">0</span>
+          </div>
+          <div>
+            <span>Account's USDC:</span>
+            <span class="balance other-balance-usdc">0</span>
+          </div>
+          <div>
+            <span>Account's VUSD:</span>
+            <span class="balance other-balance-vusd">0</span>
+          </div>
+          <div>
+            <span>Account's VAN:</span>
+            <span class="balance other-balance-van">0</span>
+          </div>
+        </div>
+
+        <div id="">
+          <input type="text" name="" id="van-amount" placeholder="How much VUSD do you want to exchange for VAN?">
+          <select id="exchange-options-van" onchange="selectHandlerVAN()">
+            <option value="buy">Buy VAN</option>
+            <option value="sell">Sell VAN</option>
+          </select>
+          <button id="btn_submit_van" onclick="submit('vnt')">Submit</button>
+        </div>
+      </div>
+    </section>
   </main>
 </body>
 

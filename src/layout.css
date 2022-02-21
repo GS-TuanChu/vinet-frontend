@@ -1,21 +1,42 @@
 .block {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
-h1 {
-  text-align: center;
+h1,
+.mint,
+#installMM,
+#loginMM {
+	text-align: center;
 }
-main {
-  text-align: center;
+#main-section {
+	text-align: center;
+	display: flex;
+	justify-content: space-evenly;
 }
-#txt_search {
-  width: 350px;
+#txt_search_usdc,
+#txt_search_van {
+	width: 350px;
 }
 
+#btn_search_usdc,
+#btn_search_van,
 #btn_search {
-  margin-top: 5px;
-  cursor: pointer;
+	margin-top: 5px;
+	cursor: pointer;
 }
 
-#btn_login_mm{
-  cursor: pointer;
+#btn_login_mm {
+	cursor: pointer;
+}
+
+#btn_status {
+	margin: 10px auto;
+}
+
+#van-vusd .balance-eth {
+}
+
+#vusd-amount,
+#van-amount,
+#usdc-amount {
+	width: 350px;
 }
